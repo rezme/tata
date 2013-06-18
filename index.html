@@ -12,14 +12,18 @@ document.addEventListener("deviceready",onDeviceReady,
 false);
 }
 function onDeviceReady() {
-navigator.notification.alert("Wawawa",alertDismissed,"Lalala","fin");   
-navigator.notification.beep(2);
-navigator.notification.vibrate(7000);
+navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+    destinationType: Camera.DestinationType.FILE_URI }); 
+
+function onSuccess(imageURI) {
+    var image = document.getElementById('myImage');
+    image.src = imageURI;
 }
-function alertDismissed() {   // do something
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
 }
 </script>
-
 </head>
 <body onload="onBodyLoad()">
 <h1>HelloWorld2</h1>
